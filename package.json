@@ -1,0 +1,34 @@
+{
+  "name": "trainerbookbackend",
+  "version": "5.1.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/socket.io": "^3.0.2",
+    "bazooka-node": "4.2.5",
+    "body-parser": "^1.19.0",
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "fs": "^0.0.2",
+    "http": "^1.0.0",
+    "ioredis": "^4.14.0",
+    "jsonfile": "^6.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^2.2.23",
+    "multer": "1.4.2",
+    "passport": "^0.4.0",
+    "passport-saml": "^0.15.0",
+    "path": "^0.12.7",
+    "router": "^1.3.3",
+    "socket.io": "^28.2.1",
+    "xlsx": "^0.15.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo test",
+    "start": "node index.js"
+  },
+  "author": "Trainers Team",
+  "license": "ISC"
+}
