@@ -1,0 +1,74 @@
+{
+  "fields": [
+    {
+      "name": "_id",
+      "display": "מספר גיחה",
+      "select" : false
+    },
+    {
+      "name": "flightName",
+      "display": "שם גיחה",
+      "select" : true
+    },
+    {
+      "name": "platform",
+      "display": "פלטפורמה",
+      "select" : false
+    },
+    {
+      "name": "date",
+      "display": "תאריך",
+      "select" : false
+    },
+    {
+      "name": "week",
+      "display": "שבוע ח\"א",
+      "select" : false
+    },
+    {
+      "name": "technician",
+      "display": "טכנאי",
+      "select" : true
+    },
+    {
+      "name": "instructor",
+      "display": "מדריכה",
+      "select" : true
+    },
+    {
+      "name": "observer",
+      "display": "תצפיתנית",
+      "select" : true
+    },
+    {
+      "name": "pilot",
+      "display": "טייס",
+      "select" : true
+    },
+    {
+      "name": "navigator",
+      "display": "נווט",
+      "select" : true
+    },
+    {
+      "name": "trainer",
+      "display": "מתאמן",
+      "select" : true
+    },
+    {
+      "name": "trainer2",
+      "display": "מתאמן 2",
+      "select" : true
+    },
+    {
+      "name": "startTime",
+      "display": "שעת התחלת גיחה",
+      "select" : false
+    },
+    {
+      "name": "timeOfFlight",
+      "display": "זמן הגיחה",
+      "select" : false
+    }
+  ]
+}

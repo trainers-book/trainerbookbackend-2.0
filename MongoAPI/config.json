@@ -1,0 +1,6 @@
+{
+  "MongoDBServer": {
+    "ip": "localhost",
+    "port": "27017"
+  }
+}

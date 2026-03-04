@@ -1,0 +1,396 @@
+{
+  "dataTableFields": [
+    {
+      "name": "flightNumber",
+      "display": "מספר גיחה",
+      "showOptions": false
+    },
+    {
+      "name": "date",
+      "display": "תאריך",
+      "showOptions": false
+    },
+    {
+      "name": "time",
+      "display": "שעה",
+      "showOptions": false
+    },
+    {
+      "name": "week",
+      "display": "שבוע חיל האוויר",
+      "showOptions": false
+    }
+  ],
+
+  "selectableField": [
+    {
+      "name": "Instructor",
+      "fieldName": "instructor",
+      "display": "מדריכה",
+      "showOptions": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "Instructor",
+      "fieldName": "observer",
+      "display": "מתצפתת",
+      "showOptions": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "InspectorInstructor",
+      "fieldName": "inspectorInstructor",
+      "display": "מדריכת בקרים",
+      "showOptions": false,
+      "showFor": ["MALAM"]
+    },
+    {
+      "name": "Technician",
+      "fieldName": "technician",
+      "display": "טכנאי",
+      "showOptions": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "Pilot",
+      "fieldName": "pilot",
+      "display": "טייס",
+      "showOptions": false,
+      "debrief": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "Navigator",
+      "fieldName": "navigator",
+      "display": "נווט",
+      "showOptions": false,
+      "debrief": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "Trainer",
+      "fieldName": "trainer",
+      "display": "מתאמן",
+      "showOptions": false,
+      "debrief": true,
+      "showFor": ["migdalEsh", "flightSupervisor", "bakarim"]
+    },
+    {
+      "name": "Trainer",
+      "fieldName": "trainer2",
+      "display": "מתאמן שני",
+      "showOptions": false,
+      "debrief": true,
+      "showFor": ["migdalEsh", "flightSupervisor", "napoleon"]
+    },
+    {
+      "name": "Instructor",
+      "fieldName": "instructor",
+      "display": "מדריכות",
+      "isMultiple": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "Trainer",
+      "fieldName": "trainer",
+      "display": "מתאמנים",
+      "isMultiple": true,
+      "showOptions": false,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "Inspector",
+      "fieldName": "inspector",
+      "display": "בקרים",
+      "isMultiple": true,
+      "showOptions": false,
+      "showFor": ["MALAM"]
+    },
+    {
+      "name": "AircraftBlocks",
+      "fieldName": "block",
+      "display": "בלוק",
+      "showOptions": false,
+      "showFor": ["barak", "sufa"]
+    },
+    {
+      "fieldName": "flightCategory",
+      "fieldOptions": [
+        { "name": "בקרים פרט" },
+        { "name": "בקרים צוות מצומצם" },
+        { "name": "בקרים צוות מלא" },
+        { "name": "מדריכות פרט" },
+        { "name": "מדריכות צוות מצומצם" },
+        { "name": "מדריכות תרגול מערכת" },
+        { "name": "PLANNING" }
+      ],
+      "display": "סוג גיחה",
+      "showOptions": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "fieldName": "sm",
+      "fieldOptions": [
+        { "name": 1 },
+        { "name": 2 },
+        { "name": 3 },
+        { "name": 4 },
+        { "name": 5 },
+        { "name": 6 },
+        { "name": 7 },
+        { "name": 8 },
+        { "name": 9 }
+      ],
+      "display": "מחשב הרצה",
+      "showOptions": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "fieldName": "sim",
+      "fieldOptions": [
+        { "name": 1 },
+        { "name": 2 },
+        { "name": 3 },
+        { "name": 4 },
+        { "name": 5 },
+        { "name": 6 },
+        { "name": 7 },
+        { "name": 8 }
+      ],
+      "display": "שרת הרצה",
+      "showOptions": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "fieldName": "flightDisruption",
+      "fieldOptions": [
+        { "name": "תקינה" },
+        { "name": "קלה" },
+        { "name": "בינונית" },
+        { "name": "חמורה" },
+        { "name": "ביטול גיחה" }
+      ],
+      "display": "הפרעה בגיחה",
+      "showOptions": true,
+      "showFor": ["bakarim", "eitam"]
+    },
+    {
+      "fieldName": "trainTarget",
+      "fieldOptions": [
+        { "name": "קורס" },
+        { "name": "הכשרת שרוך" },
+        { "name": "הכשרת שנה שניה" },
+        { "name": "אימונים" }
+      ],
+      "display": "מטרת האימון",
+      "showOptions": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "fieldName": "track",
+      "fieldOptions": [{ "name": "משימה" }, { "name": "תעבורה" }],
+      "display": "מסלול",
+      "showOptions": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "fieldName": "workMod",
+      "fieldOptions": [
+        { "name": "DATABASE" },
+        { "name": "PLANNING" },
+        { "name": "RUNTIME" }
+      ],
+      "display": "מוד עבודה",
+      "showOptions": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "fieldName": "station",
+      "fieldOptions": ["1", "2", "3", "4", "5", "6"],
+      "display": "עמדות",
+      "isMultiple": true,
+      "showOptions": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "fieldName": "trainerQualification",
+      "fieldOptions": [
+        { "name": "2 גיחות פרט בו\"ז" },
+        { "name": "גיחת פרט" },
+        { "name": "גיחת פרט וצוות מצומצם בו\"ז" },
+        { "name": "חפ\"ק" },
+        { "name": "צוות מלא" },
+        { "name": "צוות מצומצם" }
+      ],
+      "display": "כשירות טכנית מאמן",
+      "showOptions": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "fieldName": "trainingEnvironment",
+      "fieldOptions": [
+        { "name": 1 },
+        { "name": 2 },
+        { "name": 3 },
+        { "name": "PLANNING" }
+      ],
+      "display": "סביבת אימון",
+      "showOptions": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "fieldName": "qualification",
+      "fieldOptions": [
+        { "name": "השלמת גילוי" },
+        { "name": "אפיון פעילות" },
+        { "name": "אבטחת טיסה" },
+        { "name": "בקרת חזית" },
+        { "name": "בקרת עומק" },
+        { "name": "מזג" },
+        { "name": "נאטו" },
+        { "name": "חפק" },
+        { "name": "ינ\"ט" },
+        { "name": "בקרת אימונים" }
+      ],
+      "display": "כשירות",
+      "showOptions": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "fieldName": "flightPurpose",
+      "fieldOptions": [
+        { "name": "אימון מדריך" },
+        { "name": "הכשרות מתקדמות" },
+        { "name": "הדגמה" },
+        { "name": "גיחת הטמעה" },
+        { "name": "תרגול מערכת" },
+        { "name": "החזרת כשירות" },
+        { "name": "גיחות קטנות" },
+        { "name": "תעסוקה" },
+        { "name": "גיחת מדר\"ט" },
+        { "name": "ש\"כ" },
+        { "name": "הסבה" },
+        { "name": "תרגול עצמי" },
+        { "name": "חזכ\"ש" },
+        { "name": "רענון" },
+        { "name": "קורס" },
+        { "name": "חפ\"ק" }
+      ],
+      "display": "מטרת הגיחה",
+      "showOptions": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "MissionCommander",
+      "fieldName": "missionCommander",
+      "display": "מפקד",
+      "showOptions": false,
+      "showFor": [
+        "MP",
+        "dustClouds",
+        "saraf",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher",
+        "moked"
+      ]
+    },
+    {
+      "name": "Trainer",
+      "fieldName": "trainer",
+      "display": "מתאמן",
+      "showOptions": false,
+      "showFor": [
+        "MP",
+        "dustClouds",
+        "saraf",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher",
+        "moked"
+      ]
+    }
+  ]
+}

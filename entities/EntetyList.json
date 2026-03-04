@@ -1,0 +1,492 @@
+{
+  "Entities": [
+    {
+      "name": "Aircraft",
+      "display": "מטוסים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "name",
+          "display": "שם פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "Instructor",
+      "display": "מדריכות",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "InspectorInstructor",
+      "display": "מדריכות בקרים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": ["MALAM"]
+    },
+    {
+      "name": "Commander",
+      "display": "מפקדים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "Navigator",
+      "display": "נווטים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "MALAM",
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "Pilot",
+      "display": "טייסים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+        "MALAM",
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "Inspector",
+      "display": "בקרים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": ["MALAM"]
+    },
+    {
+      "name": "MissionCommander",
+      "display": "מפקדי משימה",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "MP",
+        "dustClouds",
+        "saraf",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "Trainer",
+      "display": "מתאמנים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "eitam",
+        "MP",
+        "dustClouds",
+        "saraf",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "PreservedFailures",
+      "display": "תקלות בגיחות שמורות",
+      "fields": [
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        },
+        {
+          "name": "name",
+          "display": "שם"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "PreservedFlightNames",
+      "display": "שמות גיחות שמורים",
+      "fields": [
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        },
+        {
+          "name": "name",
+          "display": "שם"
+        }
+      ],
+      "isEditableForInstructor": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "Technician",
+      "display": "טכנאים",
+      "fields": [
+        {
+          "name": "_id",
+          "display": "מספר זיהוי"
+        },
+        {
+          "name": "firstName",
+          "display": "שם פרטי"
+        },
+        {
+          "name": "lastName",
+          "display": "שם משפחה"
+        },
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        }
+      ],
+      "isEditableForInstructor": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "DebriefFiles",
+      "display": "דפי תחקיר",
+      "fields": [
+        {
+          "name": "platform",
+          "display": "פלטפורמה"
+        },
+        {
+          "name": "trainingDay",
+          "display": "יום אימון"
+        },
+        {
+          "name": "period",
+          "display": "תקופתית"
+        },
+        {
+          "name": "flightName",
+          "display": "שם גיחה"
+        },
+        {
+          "name": "lastUpdate",
+          "display": "עדכון אחרון"
+        }
+      ],
+      "isEditableForInstructor": true,
+      "showFor": [
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "WeaponsSystems"
+      ]
+    }
+  ]
+}

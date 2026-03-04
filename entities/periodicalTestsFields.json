@@ -1,0 +1,55 @@
+{
+  "fields": [
+    {
+      "name": "technicianName",
+      "display": "טכנאי מבצע",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "date",
+      "display": "תאריך הבדיקה",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "comment",
+      "display": "הערות",
+      "select" : false,
+      "showMore": true
+    },
+    {
+      "name": "platform",
+      "display": "פלטפורמה",
+      "select" : false,
+      "showMore": false
+    }
+  ],
+
+  "testNames": [
+    {
+      "name": "שבועית",
+      "trainer": "Generic"
+    },
+    {
+      "name": "חודשית",
+      "trainer": "Generic"
+    },
+    {
+      "name": "תלת חודשית",
+      "trainer": "Generic"
+    },
+    {
+      "name": "Post flight",
+      "trainer": ["MP", "dustClouds", "saraf", "MALAM", "saraf320", "spear", "zik", "zikStar", "shoval", "searchAndDecipher", "moked"]
+    },
+    {
+      "name": "Pre flight",
+      "trainer": ["MP", "dustClouds", "saraf", "MALAM", "saraf320", "spear", "zik", "zikStar", "shoval", "searchAndDecipher", "moked"]
+    },
+    {
+      "name": "ביקורת AV",
+      "trainer": ["MP", "dustClouds", "saraf", "saraf320", "spear", "zik", "zikStar", "shoval", "searchAndDecipher", "moked"]
+    }
+  ]
+}

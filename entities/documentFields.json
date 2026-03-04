@@ -1,0 +1,598 @@
+{
+  "fields": [
+    {
+      "name": "_id",
+      "display": "מספר גיחה",
+      "select": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "flightName",
+      "display": "שם גיחה",
+      "select": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "mpd",
+      "display": "mpd",
+      "select": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "platform",
+      "display": "פלטפורמה",
+      "select": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "date",
+      "display": "תאריך",
+      "select": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "week",
+      "display": "שבוע ח\"א",
+      "select": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "technician",
+      "display": "טכנאי",
+      "select": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "instructor",
+      "display": "מדריכה",
+      "select": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "inspectorInstructor",
+      "display": "מדריכת בקרים",
+      "select": true,
+      "showFor": ["MALAM"]
+    },
+    {
+      "name": "observer",
+      "display": "תצפיתנית",
+      "select": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "pilot",
+      "display": "טייס",
+      "select": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "navigator",
+      "display": "נווט",
+      "select": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+        "WeaponsSystems"
+      ]
+    },
+    {
+      "name": "trainer",
+      "display": "מתאמן",
+      "select": true,
+      "showMore": true,
+      "showFor": [
+        "migdalEsh",
+        "flightSupervisor",
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+
+        "dustClouds",
+        "saraf",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "configuration",
+      "display": "תצורה",
+      "select": true,
+      "fieldOptions": ["ברק", "סופה", "בז", "רעם"],
+      "showFor": ["MALAM"]
+    },
+    {
+      "name": "inspector",
+      "display": "בקרים",
+      "select": true,
+      "showMore": true,
+      "showFor": ["MALAM"]
+    },
+    {
+      "name": "missionCommander",
+      "display": "מפקד משימה",
+      "select": true,
+      "showFor": [
+        "MP",
+        "dustClouds",
+        "saraf",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher",
+        "moked"
+      ]
+    },
+    {
+      "name": "trainer2",
+      "display": "מתאמן 2",
+      "select": true,
+      "showMore": true,
+      "showFor": ["migdalEsh", "flightSupervisor", "napoleon"]
+    },
+    {
+      "name": "startTime",
+      "display": "שעת התחלת גיחה",
+      "select": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "timeOfFlight",
+      "display": "זמן הגיחה",
+      "select": false,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "disruption",
+      "display": "גיחה הופרעה",
+      "select": true,
+      "showFor": [
+        "barak",
+        "sufa",
+        "baz",
+        "raam",
+        "zahav",
+        "hanitNaah",
+        "migdalEsh",
+        "flightSupervisor",
+
+        "bakarim",
+        "moked",
+        "MP",
+        "eitam",
+        "MALAM",
+        "dustClouds",
+        "saraf",
+        "WeaponsSystems",
+        "saraf320",
+        "spear",
+        "zik",
+        "zikStar",
+        "shoval",
+        "searchAndDecipher"
+      ]
+    },
+    {
+      "name": "station",
+      "fieldOptions": ["1", "2", "3", "4", "5", "6"],
+      "display": "עמדות",
+      "select": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "sm",
+      "fieldOptions": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      "display": "מחשב הרצה",
+      "select": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "name": "sim",
+      "fieldOptions": ["1", "2", "3", "4", "5", "6", "7", "8"],
+      "display": "שרת הרצה",
+      "select": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "name": "flightDisruption",
+      "fieldOptions": ["תקינה", "קלה", "בינונית", "חמורה", "ביטול גיחה"],
+      "display": "הפרעה בגיחה",
+      "select": true,
+      "showFor": ["bakarim", "eitam"]
+    },
+    {
+      "name": "trainTarget",
+      "fieldOptions": ["קורס", "הכשרת שרוך", "הכשרת שנה שניה", "אימונים"],
+      "display": "מטרת האימון",
+      "select": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "name": "track",
+      "fieldOptions": ["משימה", "תעבורה"],
+      "display": "מסלול",
+      "select": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "name": "workMod",
+      "fieldOptions": ["DATABASE", "PLANNING", "RUNTIME"],
+      "display": "מוד עבודה",
+      "select": true,
+      "showFor": ["bakarim"]
+    },
+    {
+      "name": "flightCategory",
+      "fieldOptions": [
+        "בקרים פרט",
+        "בקרים צוות מצומצם",
+        "בקרים צוות מלא",
+        "מדריכות פרט",
+        "מדריכות צוות מצומצם",
+        "מדריכות תרגול מערכת",
+        "PLANNING"
+      ],
+      "display": "סוג גיחה",
+      "select": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "trainerQualification",
+      "fieldOptions": [
+        "2 גיחות פרט בו\"ז",
+        "גיחת פרט",
+        "גיחת פרט וצוות מצומצם בו\"ז",
+        "חפ\"ק",
+        "צוות מלא",
+        "צוות מצומצם"
+      ],
+      "display": "כשירות טכנית מאמן",
+      "select": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "trainingEnvironment",
+      "fieldOptions": ["1", "2", "3", "PLANNING"],
+      "display": "סביבת אימון",
+      "select": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "qualification",
+      "fieldOptions": [
+        "השלמת גילוי",
+        "אפיון פעילות",
+        "אבטחת טיסה",
+        "בקרת חזית",
+        "בקרת עומק",
+        "מזג",
+        "נאטו",
+        "חפק",
+        "ינ\"ט",
+        "בקרת אימונים"
+      ],
+      "display": "כשירות",
+      "select": true,
+      "showFor": ["eitam"]
+    },
+    {
+      "name": "flightPurpose",
+      "fieldOptions": [
+        "אימון מדריך",
+        "הכשרות מתקדמות",
+        "הדגמה",
+        "גיחת הטמעה",
+        "תרגול מערכת",
+        "החזרת כשירות",
+        "גיחות קטנות",
+        "תעסוקה",
+        "גיחת מדר\"ט",
+        "ש\"כ",
+        "הסבה",
+        "תרגול עצמי",
+        "חזכ\"ש",
+        "רענון",
+        "קורס",
+        "חפ\"ק"
+      ],
+      "display": "מטרת הגיחה",
+      "select": true,
+      "showFor": ["eitam"]
+    }
+  ],
+
+  "malfunctionFields": [
+    { "name": "", "display": "" },
+    { "name": "", "display": "" },
+    {
+      "name": "description",
+      "display": "שם התקלה",
+      "showMore": true
+    },
+    {
+      "name": "failureDetails",
+      "display": "פירוט התקלה",
+      "showMore": true
+    },
+    {
+      "name": "date",
+      "display": "זמן פתיחת התקלה",
+      "showMore": false
+    },
+    {
+      "name": "disruption",
+      "display": "חומרת התקלה",
+      "showMore": false
+    },
+    {
+      "name": "flightInterruptionPeriod",
+      "display": "משך הפסקת אימון",
+      "showMore": false
+    },
+    {
+      "name": "failureStatus",
+      "display": "סטטוס",
+      "showMore": false
+    }
+  ],
+  "malamEntities": [
+    {
+      "domes": [130, 131, 132, 133, 140, 141, 142, 143],
+      "data": [
+        {
+          "name": "name",
+          "fields": "Aviators"
+        }
+      ]
+    }
+  ]
+}

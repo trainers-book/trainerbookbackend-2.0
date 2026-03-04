@@ -1,0 +1,88 @@
+{
+  "fields": [
+    {
+      "name": "status",
+      "display": "סטטוס",
+      "select" : true,
+      "showMore": false
+    },
+    {
+      "name": "platform",
+      "display": "פלטפורמה",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "configuration",
+      "display": "תצורה",
+      "select" : true,
+      "showMore": false
+    },
+    {
+      "name": "dome",
+      "display": "dome",
+      "select" : true,
+      "showMore": false
+    },
+    {
+      "name": "blocks",
+      "display": "בלוק",
+      "select" : true,
+      "showMore": false
+    },
+    {
+      "name": "permissionName",
+      "display": "שם היתר",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "permissionDescription",
+      "display": "פירוט היתר",
+      "select" : false,
+      "showMore": true
+    },
+    {
+      "name": "malfNameConnected",
+      "display": "שם תקלה קשורה",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "openingDate",
+      "display": "תאריך פתיחה",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "expirationDate",
+      "display": "תאריך תפוגה",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "permissionOpener",
+      "display": "נפתח ע\"י",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "permissionCloser",
+      "display": "נסגר ע\"י",
+      "select" : false,
+      "showMore": false
+    },
+    {
+      "name": "permissionSolved",
+      "display": "דרך פתרון",
+      "select" : false,
+      "showMore": true
+    },
+    {
+      "name": "permissionCloserDate",
+      "display": "תאריך סגירה",
+      "select" : false,
+      "showMore": false
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "fields": [
+    {
+      "name": "_id",
+      "display": "מספר סידורי",
+      "select" : false,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "date",
+      "display": "תאריך פתיחה",
+      "select" : false,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "priority",
+      "display": "תעדוף",
+      "select" : false,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "description",
+      "display": "תיאור כללי",
+      "select" : false,
+      "showMore": true,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "characterization",
+      "display": "דפי אפיון",
+      "select" : false,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "status",
+      "display": "סטטוס",
+      "select" : true,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "classification",
+      "display": "סיווג",
+      "select" : true,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "closingDate",
+      "display": "תאריך טיפול",
+      "select" : false,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "instructor",
+      "display": "מדריכה אחראית",
+      "select" : true,
+      "showMore": false,
+      "showFor": ["barak", "sufa", "eitam"]
+    },
+    {
+      "name": "maavWeek",
+      "display": "שבוע מא\"ב",
+      "select" : true,
+      "showMore": false,
+      "showFor": ["barak", "sufa"]
+    },
+    {
+      "name": "comments",
+      "display": "הערות מא\"ב",
+      "select" : false,
+      "showMore": true,
+      "showFor": ["barak", "sufa", "eitam"]
+    }
+  ]
+}
