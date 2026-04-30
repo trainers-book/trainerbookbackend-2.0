@@ -24,7 +24,7 @@ function deleteEntity(_id, collectionName, callback) {
           callback({
             success: result.result.ok === 1 && result.deletedCount === 1,
           });
-        }
+        },
       );
     } catch (err) {
       callback({ err: err });
@@ -54,11 +54,33 @@ function getAllEntity(collectionName, callback) {
   });
 }
 
+function getEntityBySearch(collectionName, search, callback) {
+  mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
+    if (err) {
+      callback({ err: err });
+      if (db) db.close();
+      return;
+    }
+    db.collection(collectionName)
+      .find({ deleted: { $exists: false }, 
+      name: { $regex: search, $options: "i" } })
+      .toArray(function (err, docs) {
+        if (err) {
+          callback({ err: err });
+          db.close();
+          return;
+        }
+        db.close();
+        callback(docs);
+      });
+  });
+}
+
 function getEntitiesByPlatformsAndAmount(
   collectionName,
   platforms,
   index,
-  callback
+  callback,
 ) {
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
@@ -90,7 +112,7 @@ function getEntitiesByFieldsAndPlatformsAndAmount(
   index,
   fields,
   stringQuery,
-  callback
+  callback,
 ) {
   if (!platforms.length) {
     platforms.push({});
@@ -108,7 +130,10 @@ function getEntitiesByFieldsAndPlatformsAndAmount(
     }
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [{ $or: stringQuery }, fields, { $or: platforms }] })
+      .find({
+        deleted: { $exists: false },
+        $and: [{ $or: stringQuery }, fields, { $or: platforms }],
+      })
       .sort({ _id: -1 })
       .limit(entitiesToGet)
       .skip(index)
@@ -129,7 +154,7 @@ function getEntitiesByPlatformsAndAmountAndFilter(
   platforms,
   index,
   filters,
-  callback
+  callback,
 ) {
   const getDateRange = (minDate, maxDate) => {
     const dayStart = new Date(minDate);
@@ -148,7 +173,7 @@ function getEntitiesByPlatformsAndAmountAndFilter(
   }
 
   const query = {};
-  
+
   if (filters) {
     if (filters.date != undefined) {
       let { start, end } = getDateRange(filters.date, filters.date);
@@ -184,7 +209,10 @@ function getEntitiesByPlatformsAndAmountAndFilter(
     }
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [query, { platform: { $in: platforms } }] })
+      .find({
+        deleted: { $exists: false },
+        $and: [query, { platform: { $in: platforms } }],
+      })
       .sort({ _id: -1 })
       .limit(entitiesToGet)
       .skip(index)
@@ -205,7 +233,7 @@ function getEntitiesByPlatformsAndAmountAndFilter(
   platforms,
   index,
   filters,
-  callback
+  callback,
 ) {
   const getDateRange = (minDate, maxDate) => {
     const dayStart = new Date(minDate);
@@ -259,7 +287,10 @@ function getEntitiesByPlatformsAndAmountAndFilter(
     }
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [query, { platform: { $in: platforms } }] })
+      .find({
+        deleted: { $exists: false },
+        $and: [query, { platform: { $in: platforms } }],
+      })
       .sort({ _id: -1 })
       .limit(entitiesToGet)
       .skip(index)
@@ -279,7 +310,7 @@ function getManyEntitiesByPlatforms(
   collectionName,
   howMany,
   platforms,
-  callback
+  callback,
 ) {
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
@@ -310,7 +341,7 @@ function getManyEntitiesByFieldsAndPlatforms(
   platforms,
   fields,
   stringQuery,
-  callback
+  callback,
 ) {
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
@@ -324,7 +355,10 @@ function getManyEntitiesByFieldsAndPlatforms(
     }
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [{ $or: stringQuery }, fields, { $or: platforms }] })
+      .find({
+        deleted: { $exists: false },
+        $and: [{ $or: stringQuery }, fields, { $or: platforms }],
+      })
       .sort({ _id: -1 })
       .limit(howMany)
       .toArray(function (err, docs) {
@@ -383,7 +417,7 @@ function getEntityByPlatform(collectionName, platform, callback) {
     }
 
     db.collection(collectionName)
-      .find({deleted: { $exists: false }, $or: platform })
+      .find({ deleted: { $exists: false }, $or: platform })
       .toArray(function (err, docs) {
         if (err) {
           callback({ err: err });
@@ -421,7 +455,10 @@ function getObjectByString(collectionName, string, platforms, callback) {
     });
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [{ $or: findString }, { $or: platforms }] })
+      .find({
+        deleted: { $exists: false },
+        $and: [{ $or: findString }, { $or: platforms }],
+      })
       .sort({ _id: -1 })
       .toArray(function (err, docs) {
         // ({$text: {$search: string}})
@@ -441,7 +478,7 @@ function getEntitiesByDatesRange(
   collectionName,
   datesRange,
   platform,
-  callback
+  callback,
 ) {
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
@@ -459,7 +496,10 @@ function getEntitiesByDatesRange(
     });
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [{ $or: findString }, { $or: platform }] })
+      .find({
+        deleted: { $exists: false },
+        $and: [{ $or: findString }, { $or: platform }],
+      })
       .sort({ _id: 1 })
       .toArray(function (err, docs) {
         if (err) {
@@ -516,7 +556,7 @@ function getEntitiesByFields(
   fields,
   platform,
   callback,
-  filters = [{}]
+  filters = [{}],
 ) {
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
@@ -531,7 +571,13 @@ function getEntitiesByFields(
     });
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [{ $or: filters }, { $or: platform }] }, fieldData)
+      .find(
+        {
+          deleted: { $exists: false },
+          $and: [{ $or: filters }, { $or: platform }],
+        },
+        fieldData,
+      )
       .sort({ _id: 1 })
       .toArray(function (err, docs) {
         if (err) {
@@ -554,7 +600,10 @@ function getEntitiesByDate(collectionName, date, platform, callback) {
     }
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [{ date: date }, { $or: platform }] })
+      .find({
+        deleted: { $exists: false },
+        $and: [{ date: date }, { $or: platform }],
+      })
       .toArray(function (err, docs) {
         if (err) {
           callback({ err: err });
@@ -571,7 +620,7 @@ function getEntitiesByAttribute(
   collectionName,
   attributeName,
   attributeValue,
-  callback
+  callback,
 ) {
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
@@ -601,7 +650,7 @@ async function getNextId(
   sequenceCollectionName,
   sequenceName,
   sequenceValueName,
-  callback
+  callback,
 ) {
   const db = await mongoObject.mongoClient.connect(mongoObject.MongoDBUrl);
   let id;
@@ -665,9 +714,9 @@ function createNewObject(objectData, collectionName, callback) {
                   object: objectData,
                 });
               else callback({ err: "Error While Creating Object in System" });
-            }
+            },
           );
-        }
+        },
       );
     } catch (err) {
       if (err) {
@@ -691,13 +740,15 @@ function updateObjectsFields(objectIds, collectionName, updatedData, callback) {
     try {
       let updateValues = { $addToSet: updatedData };
       const updateObjects = objectIds.map((objectId) =>
-        db.collection(collectionName).updateOne({ _id: objectId }, updateValues, (err, doc) => {
+        db
+          .collection(collectionName)
+          .updateOne({ _id: objectId }, updateValues, (err, doc) => {
             if (err) {
               callback({ success: false, err: err });
               db.close();
             }
             return doc.matchedCount === 1;
-          })
+          }),
       );
       callback({ success: updateObjects });
     } catch (err) {
@@ -730,7 +781,7 @@ function updateObjectFields(objectId, collectionName, updatedData, callback) {
             return;
           }
           callback({ success: doc.matchedCount === 1 });
-        }
+        },
       );
     } catch (err) {
       if (err) {
@@ -771,7 +822,7 @@ function updateObject(objectData, collectionName, fieldsToRemove, callback) {
             return;
           }
           callback({ success: doc.matchedCount === 1 });
-        }
+        },
       );
     } catch (err) {
       if (err) {
@@ -814,7 +865,7 @@ function updateUserObject(objectData, collectionName, callback, lastId = null) {
             callback({
               success: result.result.ok === 1 && result.deletedCount === 1,
             });
-          }
+          },
         );
       } else {
         db.collection(collectionName).updateOne(
@@ -827,7 +878,7 @@ function updateUserObject(objectData, collectionName, callback, lastId = null) {
               return;
             }
             callback({ success: doc.matchedCount === 1 });
-          }
+          },
         );
       }
     } catch (err) {
@@ -890,3 +941,4 @@ module.exports.updateObjectFields = updateObjectFields;
 module.exports.updateUserObject = updateUserObject;
 module.exports.countFilesByFileName = countFilesByFileName;
 module.exports.updateObjectsFields = updateObjectsFields;
+module.exports.getEntityBySearch = getEntityBySearch;

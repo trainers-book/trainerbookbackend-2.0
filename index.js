@@ -178,6 +178,37 @@ const platformArray = (platforms, name) => {
   return findString;
 };
 
+app.get("/*/search/:search", (req, res) => {
+  let collection = getCollectionNameFromURL(req.url);
+
+  if (!collection) {
+    res.status(404);
+    res.end();
+    return;
+  }
+
+  let stringToSearch = req.params.search.slice(1, req.params.search.length);
+  
+  commonFunctions.getEntityBySearch(collection, stringToSearch, (result) =>
+    getCallback(result, res)
+  );
+});
+
+app.get("/*/FindEntityByString/:string", (req, res) => {
+  let collectionName = getCollectionNameFromURL(req.url);
+  let string = req.params.string.slice(1, req.params.string.length);
+  let platforms = JSON.parse(req.query.platform);
+
+  platforms = platformArray(platforms, collectionName);
+
+  commonFunctions.getObjectByString(
+    collectionName,
+    string,
+    platforms,
+    (result) => getCallback(result, res)
+  );
+});
+
 app.get("/Entities", (req, res) => {
   res.json(require("./entities/EntetyList"));
 });
@@ -457,6 +488,8 @@ app.get("/getFlightId", (req, res) => {
   getNextFlightIdMongoAPI.getCurrentId((result) => getCallback(result, res));
 });
 
+
+
 app.get("/*/getDebriefFileByFlightName/:flightName/:platform", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
   let flightName = req.params.flightName.slice(2, req.params.flightName.length);
@@ -470,20 +503,7 @@ app.get("/*/getDebriefFileByFlightName/:flightName/:platform", (req, res) => {
   );
 });
 
-app.get("/*/FindEntityByString/:string", (req, res) => {
-  let collectionName = getCollectionNameFromURL(req.url);
-  let string = req.params.string.slice(1, req.params.string.length);
-  let platforms = JSON.parse(req.query.platform);
 
-  platforms = platformArray(platforms, collectionName);
-
-  commonFunctions.getObjectByString(
-    collectionName,
-    string,
-    platforms,
-    (result) => getCallback(result, res)
-  );
-});
 
 app.get("/*/getByFieldsAndFilters/:fields/:filters", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
@@ -961,6 +981,10 @@ app.post("/Manage", (req, res) => {
     (result) => getCallback(result, res),
   );
 });
+
+
+
+
 
 app.get("*", (req, res) => {
   let collection = getCollectionNameFromURL(req.url);
