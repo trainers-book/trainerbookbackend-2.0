@@ -756,7 +756,7 @@ function updateObject(objectData, collectionName, fieldsToRemove, callback) {
         setValues["$unset"] = fieldsToRemove;
       }
 
-      let id = JSON.stringify(objectData._id);
+      let id = objectData._id;
       if (objectData["deleted"]) {
         delete objectData._id;
       }
