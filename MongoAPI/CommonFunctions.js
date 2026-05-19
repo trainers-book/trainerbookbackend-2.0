@@ -148,7 +148,6 @@ function getEntitiesByPlatformsAndAmountAndFilter(
   }
 
   const query = {};
-  
   if (filters) {
     if (filters.date != undefined) {
       let { start, end } = getDateRange(filters.date, filters.date);
@@ -161,82 +160,7 @@ function getEntitiesByPlatformsAndAmountAndFilter(
       filters.failureStatus != undefined &&
       collectionName == "FlightFailure"
     ) {
-      query.failureStatus = { $in: filters.failureStatus };
-    }
-
-    if (
-      filters.issueSeverity != undefined &&
-      collectionName == "FlightFailure"
-    ) {
-      query.disruption = filters.issueSeverity;
-    }
-
-    if (filters.search != undefined) {
-      query["$text"] = { $search: filters.search };
-    }
-  }
-
-  mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
-    if (err) {
-      callback({ err: err });
-      if (db) db.close();
-      return;
-    }
-
-    db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [query, { platform: { $in: platforms } }] })
-      .sort({ _id: -1 })
-      .limit(entitiesToGet)
-      .skip(index)
-      .toArray(function (err, docs) {
-        if (err) {
-          callback({ err: err.message });
-          db.close();
-          return;
-        }
-        db.close();
-        callback(docs);
-      });
-  });
-}
-
-function getEntitiesByPlatformsAndAmountAndFilter(
-  collectionName,
-  platforms,
-  index,
-  filters,
-  callback
-) {
-  const getDateRange = (minDate, maxDate) => {
-    const dayStart = new Date(minDate);
-    const dayEnd = new Date(maxDate);
-    dayStart.setHours(0, 0, 0, 0);
-    dayEnd.setHours(23, 59, 59, 999);
-
-    const start = dayStart.getTime();
-    const end = dayEnd.getTime();
-
-    return { start, end };
-  };
-
-  if (!platforms.length) {
-    platforms.push({});
-  }
-
-  const query = {};
-  if (filters) {
-    if (filters.date != undefined) {
-      let { start, end } = getDateRange(filters.date, filters.date);
-      query.dateTime = { $gte: start, $lte: end };
-    } else if (filters.minDate != undefined && filters.maxDate != undefined) {
-      let { start, end } = getDateRange(filters.minDate, filters.maxDate);
-      query.dateTime = { $gte: start, $lte: end };
-    }
-    if (
-      filters.failureStatus != undefined &&
-      collectionName == "FlightFailure"
-    ) {
-      query.failureStatus = { $in: filters.failureStatus };
+      query.status = { $in: filters.failureStatus };
     }
 
     if (
