@@ -178,6 +178,10 @@ const platformArray = (platforms, name) => {
   return findString;
 };
 
+app.get("/health", (req, res) => {
+  res.send("ok");
+});
+
 app.get("/Entities", (req, res) => {
   res.json(require("./entities/EntetyList"));
 });
