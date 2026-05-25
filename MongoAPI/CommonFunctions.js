@@ -175,6 +175,8 @@ function getEntitiesByPlatformsAndAmountAndFilter(
     }
   }
 
+  const platforms_query = collectionName === "Aircraft" ? {} : { platform: { $in: platforms } };
+
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
       callback({ err: err });
@@ -183,7 +185,7 @@ function getEntitiesByPlatformsAndAmountAndFilter(
     }
 
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, $and: [query, { platform: { $in: platforms } }] })
+      .find({ deleted: { $exists: false }, $and: [query, platforms_query] })
       .sort({ _id: -1 })
       .limit(entitiesToGet)
       .skip(index)
