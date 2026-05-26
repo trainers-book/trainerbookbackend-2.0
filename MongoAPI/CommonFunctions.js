@@ -62,8 +62,10 @@ function getEntityBySearch(collectionName, search, callback) {
       return;
     }
     db.collection(collectionName)
-      .find({ deleted: { $exists: false }, 
-      name: { $regex: search, $options: "i" } })
+      .find({
+        deleted: { $exists: false },
+        flightName: { $regex: search, $options: "i" },
+      })
       .toArray(function (err, docs) {
         if (err) {
           callback({ err: err });
