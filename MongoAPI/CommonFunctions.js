@@ -64,16 +64,19 @@ function getEntityBySearch(collectionName, search, callback) {
     db.collection(collectionName)
       .find({
         deleted: { $exists: false },
-        flightName: { $regex: search, $options: "i" },
       })
       .toArray(function (err, docs) {
-        if (err) {
-          callback({ err: err });
-          db.close();
-          return;
-        }
-        db.close();
-        callback(docs);
+        const filtered = docs.filter((doc) => {
+          return (
+            (doc.flightName || "").match(new RegExp(search, "i")) ||
+            (doc.instructorName || "").match(new RegExp(search, "i")) ||
+            (doc.issueOpener || "").match(new RegExp(search, "i")) ||
+            (doc.issueDescription || "").match(new RegExp(search, "i")) ||
+            String(doc._id || "").includes(search)
+          );
+        });
+
+        callback(filtered);
       });
   });
 }

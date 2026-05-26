@@ -62,7 +62,7 @@ io.on("connection", (socket) => {
   const safeJoin = (currentId) => {
     socket.leave(previousId);
     socket.join(currentId, () =>
-      console.log("socket " + socket.id + " joined room " + currentId)
+      console.log("socket " + socket.id + " joined room " + currentId),
     );
     previousId = currentId;
   };
@@ -71,7 +71,7 @@ io.on("connection", (socket) => {
     safeJoin(tableName);
 
     commonFunctions.getAllEntity(tableName, (result) =>
-      socket.emit("document", result)
+      socket.emit("document", result),
     );
   });
 
@@ -80,7 +80,7 @@ io.on("connection", (socket) => {
 
     commonFunctions.deleteEntity(id, tableName, (result) => {
       commonFunctions.getAllEntity(tableName, (result) =>
-        io.emit("document", result)
+        io.emit("document", result),
       );
     });
   });
@@ -91,7 +91,7 @@ io.on("connection", (socket) => {
     commonFunctions.updateObject(data, tableName, fieldsToRemove, (result) => {
       if (result.success) {
         commonFunctions.getAllEntity(tableName, (result) =>
-          io.emit("document", result)
+          io.emit("document", result),
         );
       }
     });
@@ -103,7 +103,7 @@ io.on("connection", (socket) => {
     commonFunctions.createNewObject(data, tableName, (result) => {
       if (result.success) {
         commonFunctions.getAllEntity(tableName, (result) =>
-          io.emit("document", result)
+          io.emit("document", result),
         );
       }
     });
@@ -143,7 +143,7 @@ function getFilterName(url, name) {
 const getCallback = (result, response) => {
   if (result.err) {
     response.status(500);
-    response.end(result.err);
+    response.end(result.err.message || String(result.err));
     return;
   }
 
@@ -188,9 +188,9 @@ app.get("/*/search/:search", (req, res) => {
   }
 
   let stringToSearch = req.params.search.slice(1, req.params.search.length);
-  
+
   commonFunctions.getEntityBySearch(collection, stringToSearch, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
@@ -205,7 +205,7 @@ app.get("/*/FindEntityByString/:string", (req, res) => {
     collectionName,
     string,
     platforms,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
@@ -273,7 +273,7 @@ app.get("*/countFilesByFileName/:fileVarName/:fileName", (req, res) => {
   let collection = getCollectionNameFromURL(req.url);
   let fileVarName = req.params.fileVarName.slice(
     1,
-    req.params.fileVarName.length
+    req.params.fileVarName.length,
   );
   let fileName = req.params.fileName.slice(1, req.params.fileName.length);
 
@@ -281,7 +281,7 @@ app.get("*/countFilesByFileName/:fileVarName/:fileName", (req, res) => {
     collection,
     fileVarName,
     fileName,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
@@ -335,7 +335,7 @@ app.get("/Authentication/:userName", (req, res) => {
 
   usersMongoAPI.getUserByUserName(userName, (result) => {
     if (result === "404") {
-      res.status(404);      
+      res.status(404);
       res.json(["no user"]);
       res.end(result.err);
       return;
@@ -374,22 +374,22 @@ app.get("/Authentication/:userName", (req, res) => {
                     } else {
                       res.status(500);
                       res.end(result.err);
-                      returnף
+                      returnף;
                     }
                   }
-  
+
                   if (result.success) {
                     res.status(204);
                     res.end();
                   }
-                }
+                },
               );
             }
-          }
+          },
         );
       });
     }
-  }); 
+  });
 });
 
 app.get("/getUser/:idNumber", (req, res) => {
@@ -413,38 +413,38 @@ app.get("/Debriefs/flightName/:flightName/:platform", (req, res) => {
   let platform = req.params.platform.slice(1, req.params.platform.length);
 
   DebriefsMongoAPI.getDebriefsByFlightName(flightName, platform, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
 app.get("/Debriefs/flightCrewId/:flightCrewId", (req, res) => {
   let flightCrewId = req.params.flightCrewId.slice(
     1,
-    req.params.flightCrewId.length
+    req.params.flightCrewId.length,
   );
 
   DebriefsMongoAPI.getDebriefsById(flightCrewId, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
 app.get("/Debriefs/flight/:flightId", (req, res) => {
   let flightId = parseInt(
-    req.params.flightId.slice(1, req.params.flightId.length)
+    req.params.flightId.slice(1, req.params.flightId.length),
   );
 
   DebriefsMongoAPI.getDebriefsByFlight(flightId, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
 app.get("/Debrief/id/:debriefId", (req, res) => {
   let debriefId = parseInt(
-    req.params.debriefId.slice(1, req.params.debriefId.length)
+    req.params.debriefId.slice(1, req.params.debriefId.length),
   );
 
   DebriefsMongoAPI.getDebriefFileById(debriefId, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
@@ -455,7 +455,7 @@ app.get("/Permissions/status/:status/:platform", (req, res) => {
   PermissionsMongoAPI.getPermissionsByStatusAndPlatform(
     platform,
     status,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
@@ -463,12 +463,12 @@ app.get("/getNextId/Stars/:sequenceName/:platform", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
   let sequenceName = req.params.sequenceName.slice(
     1,
-    req.params.sequenceName.length
+    req.params.sequenceName.length,
   );
   let platform = req.params.platform.slice(1, req.params.platform.length);
 
   commonFunctions.getNextId(collectionName, sequenceName, platform, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
@@ -480,15 +480,13 @@ app.get("/getNextId/:custom", (req, res) => {
     collectionName,
     sequenceName,
     "sequenceValue",
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
 app.get("/getFlightId", (req, res) => {
   getNextFlightIdMongoAPI.getCurrentId((result) => getCallback(result, res));
 });
-
-
 
 app.get("/*/getDebriefFileByFlightName/:flightName/:platform", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
@@ -499,11 +497,9 @@ app.get("/*/getDebriefFileByFlightName/:flightName/:platform", (req, res) => {
     collectionName,
     flightName,
     platform,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
-
-
 
 app.get("/*/getByFieldsAndFilters/:fields/:filters", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
@@ -527,17 +523,17 @@ app.get("/*/getByFieldsAndFilters/:fields/:filters", (req, res) => {
     if (
       datesRangeFunctions.IsFirstSooner(
         filtersArray.fromDate,
-        filtersArray.untilDate
+        filtersArray.untilDate,
       )
     ) {
       datesRange = datesRangeFunctions.getDatesRange(
         filtersArray.fromDate,
-        filtersArray.untilDate
+        filtersArray.untilDate,
       );
     } else {
       datesRange = datesRangeFunctions.getDatesRange(
         filtersArray.untilDate,
-        filtersArray.fromDate
+        filtersArray.fromDate,
       );
     }
 
@@ -549,7 +545,7 @@ app.get("/*/getByFieldsAndFilters/:fields/:filters", (req, res) => {
     fieldsArray,
     platforms,
     (result) => getCallback(result, res),
-    filtersArray
+    filtersArray,
   );
 });
 
@@ -557,20 +553,22 @@ app.get("/*/checkIfExist", (req, res) => {
   let collection = getCollectionNameFromURL(req.url);
   let userId = JSON.parse(req.query.id);
   commonFunctions.checkIfExistInCollection(collection, userId, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
 app.get("/*/getAmountByFilters/:index", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
-  let index = parseInt(req.params.index.slice(0, req.params.index.length));  
-  let platforms = req.query.platform.map((platformNames) => JSON.parse(platformNames));
+  let index = parseInt(req.params.index.slice(0, req.params.index.length));
+  let platforms = req.query.platform.map((platformNames) =>
+    JSON.parse(platformNames),
+  );
   let filters = req.query.filters;
 
   commonFunctions.getEntitiesByPlatformsAndAmountAndFilter(
     collectionName,
     platforms,
-    index, 
+    index,
     filters,
     (result) => getCallback(result, res),
   );
@@ -585,7 +583,7 @@ app.get("/*/getByFields", (req, res) => {
     collectionName,
     fields,
     platform,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
@@ -594,7 +592,7 @@ app.get("/*/findByIdList", (req, res) => {
   let idList = JSON.parse(req.query.idList);
 
   commonFunctions.getEntityByIdList(collectionName, idList, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
@@ -607,7 +605,7 @@ app.get("/*/GetByDate/:date", (req, res) => {
   date = date.replace(re, "/");
 
   commonFunctions.getEntitiesByDate(collectionName, date, platform, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
@@ -615,18 +613,18 @@ app.get("/*/GetByAttribute/:attributeName/:attributeValue", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
   let attributeName = req.params.attributeName.slice(
     1,
-    req.params.attributeName.length
+    req.params.attributeName.length,
   );
   let attributeValue = req.params.attributeValue.slice(
     1,
-    req.params.attributeValue.length
+    req.params.attributeValue.length,
   );
 
   commonFunctions.getEntitiesByAttribute(
     collectionName,
     attributeName,
     attributeValue,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
@@ -639,7 +637,7 @@ app.get("/*/GetByDatesRange", (req, res) => {
     collectionName,
     datesRange,
     platform,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
@@ -652,7 +650,7 @@ app.get("/*/findFlightNameForDebrief/:flightName/:platform", (req, res) => {
     collectionName,
     flightName,
     platform,
-    (result) => getCallback(result, res)
+    (result) => getCallback(result, res),
   );
 });
 
@@ -661,14 +659,14 @@ app.get("/*/findAirCrew", (req, res) => {
   let airCrewId = req.query.airCrewId;
 
   DebriefsMongoAPI.findAirCrew(collectionName, airCrewId, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
 app.get("/*/getMany/:howMany", (req, res) => {
   let name = getCollectionNameFromURL(req.url);
   let howMany = parseInt(
-    req.params.howMany.slice(1, req.params.howMany.length)
+    req.params.howMany.slice(1, req.params.howMany.length),
   );
   let platforms = JSON.parse(req.query.platform);
   let additionalFilters = JSON.parse(req.query.additionalFilters);
@@ -693,7 +691,7 @@ app.get("/*/getMany/:howMany", (req, res) => {
       findString,
       this[name + "Filters"],
       this.FlightFailureString,
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   } else if (name === "Debriefs") {
     this.FlightFailureString = [{}];
@@ -703,20 +701,20 @@ app.get("/*/getMany/:howMany", (req, res) => {
       findString,
       this[name + "Filters"],
       this.FlightFailureString,
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   } else if (name === "Stars") {
     StarsMongoAPI.getManyStarsByField(
       howMany,
       this[name + "Filters"],
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   } else {
     commonFunctions.getManyEntitiesByPlatforms(
       name,
       howMany,
       findString,
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   }
 });
@@ -744,7 +742,7 @@ app.get("/*/Amount/:index", (req, res) => {
       index,
       this[name + "Filters"],
       this.FlightFailureString,
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   } else if (name === "Debriefs") {
     this.FlightFailureString = [{}];
@@ -754,20 +752,20 @@ app.get("/*/Amount/:index", (req, res) => {
       index,
       this[name + "Filters"],
       this.FlightFailureString,
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   } else if (name === "Stars") {
     StarsMongoAPI.getStarsByFieldAndAmount(
       this[name + "Filters"],
       index,
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   } else {
     commonFunctions.getEntitiesByPlatformsAndAmount(
       name,
       findString,
       index,
-      (result) => getCallback(result, res)
+      (result) => getCallback(result, res),
     );
   }
 });
@@ -777,7 +775,7 @@ app.get("/*/platform", (req, res) => {
   let platform = JSON.parse(req.query.platform);
 
   commonFunctions.getEntityByPlatform(name, platform, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
@@ -813,7 +811,7 @@ app.get("/*/:custom", (req, res) => {
     if (
       Object.keys(filterField).find(
         (newKey) =>
-          newKey === "pilot" || newKey === "navigator" || newKey === "trainer"
+          newKey === "pilot" || newKey === "navigator" || newKey === "trainer",
       )
     ) {
       doesFieldExist = true;
@@ -827,8 +825,8 @@ app.get("/*/:custom", (req, res) => {
       if (
         this[name + "Filters"]["$and"].find((value) =>
           Object.keys(value).find((key) =>
-            Object.keys(filterField).find((newKey) => newKey === key)
-          )
+            Object.keys(filterField).find((newKey) => newKey === key),
+          ),
         )
       ) {
         // value change
@@ -842,7 +840,7 @@ app.get("/*/:custom", (req, res) => {
                 // the right $or
                 doesFieldExist = true;
                 const index = this[name + "Filters"]["$and"].findIndex(
-                  (field) => JSON.stringify(value) === JSON.stringify(field)
+                  (field) => JSON.stringify(value) === JSON.stringify(field),
                 ); // remove
                 this[name + "Filters"]["$and"].splice(index, 1);
                 if (
@@ -863,12 +861,12 @@ app.get("/*/:custom", (req, res) => {
           this[name + "Filters"]["$and"].some((value) => {
             if (
               Object.keys(value).find((key) =>
-                Object.keys(filterField).find((newKey) => newKey === key)
+                Object.keys(filterField).find((newKey) => newKey === key),
               )
             ) {
               doesFieldExist = true;
               const index = this[name + "Filters"]["$and"].findIndex(
-                (field) => JSON.stringify(value) === JSON.stringify(field)
+                (field) => JSON.stringify(value) === JSON.stringify(field),
               ); // remove
               this[name + "Filters"]["$and"].splice(index, 1);
 
@@ -890,14 +888,14 @@ app.get("/*/:custom", (req, res) => {
               // the right $or
               doesFieldExist = true;
               const index = this[name + "Filters"]["$and"].findIndex(
-                (field) => JSON.stringify(value) === JSON.stringify(field)
+                (field) => JSON.stringify(value) === JSON.stringify(field),
               ); // remove
 
               if (name !== "Stars") {
                 if (
                   !value["$or"].find(
                     (field) =>
-                      JSON.stringify(filterField) === JSON.stringify(field)
+                      JSON.stringify(filterField) === JSON.stringify(field),
                   )
                 ) {
                   // change
@@ -910,7 +908,7 @@ app.get("/*/:custom", (req, res) => {
                   if (!wasAdded) {
                     const innerIndex = value["$or"].findIndex(
                       (field) =>
-                        JSON.stringify(filterField) === JSON.stringify(field)
+                        JSON.stringify(filterField) === JSON.stringify(field),
                     ); // remove
                     value["$or"].splice(innerIndex, 1);
 
@@ -975,16 +973,11 @@ app.get("/*/:custom", (req, res) => {
   }
 });
 
-app.post("/Manage", (req, res) => {  
-    ManageMongoAPI.getManageTabsByRole(
-    req.body.role,
-    (result) => getCallback(result, res),
+app.post("/Manage", (req, res) => {
+  ManageMongoAPI.getManageTabsByRole(req.body.role, (result) =>
+    getCallback(result, res),
   );
 });
-
-
-
-
 
 app.get("*", (req, res) => {
   let collection = getCollectionNameFromURL(req.url);
@@ -996,7 +989,7 @@ app.get("*", (req, res) => {
   }
 
   commonFunctions.getAllEntity(collection, (result) =>
-    getCallback(result, res)
+    getCallback(result, res),
   );
 });
 
@@ -1045,8 +1038,11 @@ app.delete("*", (req, res) => {
   let id = JSON.parse(req.query._id);
 
   if (id) {
-    commonFunctions.updateObject({"_id": id, "deleted": true}, collection, null, (result) =>
-      deleteCallback(result, res)
+    commonFunctions.updateObject(
+      { _id: id, deleted: true },
+      collection,
+      null,
+      (result) => deleteCallback(result, res),
     );
   } else {
     res.status(500);
@@ -1106,7 +1102,7 @@ app.put("/alterPriorities", (req, res) => {
         res.json({ success: true, message: "stars updated successfully" });
         res.end();
       }
-    }
+    },
   );
 });
 
@@ -1159,7 +1155,7 @@ app.put("/switchPriorities", (req, res) => {
         res.json({ success: true, message: "stars updated successfully" });
         res.end();
       }
-    }
+    },
   );
 });
 
@@ -1220,7 +1216,7 @@ app.put("/Authentication/:collection", (req, res) => {
         return;
       }
     },
-    lastId
+    lastId,
   );
 
   commonFunctions.updateUserObject(
@@ -1237,7 +1233,7 @@ app.put("/Authentication/:collection", (req, res) => {
         return;
       }
     },
-    lastId
+    lastId,
   );
 
   if (statusAuth == 500) {
@@ -1288,32 +1284,39 @@ app.put("/Authentication/:fromCollection/:toCollection", (req, res) => {
         return;
       }
     },
-    lastId
+    lastId,
   );
 
-  commonFunctions.deleteEntity(lastId == null ? collectionObject._id : lastId, fromCollection, (result) => {
-    if (result.err) {
-      status = Math.max(500, status);
-      return;
-    }
-
-    if (result.success) {
-      return;
-    }
-  });
-  
-  if (toCollection == "Admin") {
-
-    commonFunctions.createNewObject(collectionObject, toCollection, (result) => {
+  commonFunctions.deleteEntity(
+    lastId == null ? collectionObject._id : lastId,
+    fromCollection,
+    (result) => {
       if (result.err) {
         status = Math.max(500, status);
         return;
       }
-  
+
       if (result.success) {
         return;
       }
-    });
+    },
+  );
+
+  if (toCollection == "Admin") {
+    commonFunctions.createNewObject(
+      collectionObject,
+      toCollection,
+      (result) => {
+        if (result.err) {
+          status = Math.max(500, status);
+          return;
+        }
+
+        if (result.success) {
+          return;
+        }
+      },
+    );
   }
 
   if (status == 500) {
@@ -1380,24 +1383,29 @@ app.patch("/NewFlightFields", (req, res) => {
   let collection = getCollectionNameFromURL(req.url);
   const ids = req.body.ids;
   const updatedData = req.body.updates;
-  
-  commonFunctions.updateObjectsFields(ids, collection, updatedData, (result) => {
-    if (result.err) {
-      res.status(500);
-      res.json({ error: result.err.message });
-      return;
-    }
 
-    if (result.success) {
-      res.status(200);
-      res.json({ success: true, message: "Object updated successfully" });
-      return;
-    } else {
-      res.status(500);
-      res.json({ error: "Failed to update object"});
-      return;
-    }
-  })
+  commonFunctions.updateObjectsFields(
+    ids,
+    collection,
+    updatedData,
+    (result) => {
+      if (result.err) {
+        res.status(500);
+        res.json({ error: result.err.message });
+        return;
+      }
+
+      if (result.success) {
+        res.status(200);
+        res.json({ success: true, message: "Object updated successfully" });
+        return;
+      } else {
+        res.status(500);
+        res.json({ error: "Failed to update object" });
+        return;
+      }
+    },
+  );
 });
 
 http.listen(port, () => {
