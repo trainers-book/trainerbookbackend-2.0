@@ -682,7 +682,33 @@ function updateObject(objectData, collectionName, fieldsToRemove, callback) {
         setValues["$unset"] = fieldsToRemove;
       }
 
-      let id = objectData._id;
+      let id;
+
+      if (objectData.lastId && objectData.lastId != objectData._id){
+        id = objectData.lastId;
+        setValues = { $set: { deleted: true } };
+
+        const objectToInsert = {
+          ...objectData
+        }
+
+        objectToInsert._id = Number(objectToInsert._id);
+        delete objectToInsert.lastId;
+        db.collection(collectionName).insertOne(
+          objectToInsert,
+          (err, doc) => {
+            if (err) {
+              db.close();
+              return;
+            }
+          }
+        );
+
+      } else {
+        id = objectData._id;
+        delete objectData.lastId;
+      }
+
       if (objectData["deleted"]) {
         delete objectData._id;
       }
