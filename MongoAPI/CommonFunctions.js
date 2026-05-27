@@ -164,6 +164,13 @@ function getEntitiesByPlatformsAndAmountAndFilter(
     }
 
     if (
+      filters.status != undefined &&
+      collectionName == "Permissions"
+    ) {
+      query.status = { $in: filters.status };
+    }
+
+    if (
       filters.issueSeverity != undefined &&
       collectionName == "FlightFailure"
     ) {
