@@ -178,7 +178,6 @@ function getEntitiesByPlatformsAndAmountAndFilter(
   }
 
   const query = {};
-
   if (filters) {
     if (filters.date != undefined) {
       let { start, end } = getDateRange(filters.date, filters.date);
@@ -191,7 +190,7 @@ function getEntitiesByPlatformsAndAmountAndFilter(
       filters.failureStatus != undefined &&
       collectionName == "FlightFailure"
     ) {
-      query.failureStatus = { $in: filters.failureStatus };
+      query.status = { $in: filters.failureStatus };
     }
 
     if (
@@ -812,7 +811,7 @@ function updateObject(objectData, collectionName, fieldsToRemove, callback) {
         setValues["$unset"] = fieldsToRemove;
       }
 
-      let id = JSON.stringify(objectData._id);
+      let id = objectData._id;
       if (objectData["deleted"]) {
         delete objectData._id;
       }
