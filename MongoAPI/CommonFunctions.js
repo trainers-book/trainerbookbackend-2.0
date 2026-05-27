@@ -550,6 +550,8 @@ async function getNextId(
 }
 
 function createNewObject(objectData, collectionName, callback) {
+  objectData._id = parseInt(objectData._id);
+
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
       if (db) {
