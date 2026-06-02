@@ -612,8 +612,10 @@ app.get("/*/GetByAttribute/:attributeName/:attributeValue", (req, res) => {
 
 app.get("/*/GetByDatesRange", (req, res) => {
   let collectionName = getCollectionNameFromURL(req.url);
-  let datesRange = JSON.parse(req.query.datesRange);
-  let platform = JSON.parse(req.query.platform);
+  let datesRange = JSON.parse(req.query.dateRange);
+  let platform = req.query.platform;
+  platform = platform === "undefined" || !platform ? [] : platform;
+  platform = platformArray(platform.map((platform) => ({"name": platform})), collectionName);
 
   commonFunctions.getEntitiesByDatesRange(
     collectionName,

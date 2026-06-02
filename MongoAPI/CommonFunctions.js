@@ -369,6 +369,17 @@ function getEntitiesByDatesRange(
   platform,
   callback
 ) {
+  const getDateRange = (minDate, maxDate) => {
+    const dayStart = new Date(minDate);
+    const dayEnd = new Date(maxDate);
+    dayStart.setHours(0, 0, 0, 0);
+    dayEnd.setHours(23, 59, 59, 999);
+
+    const start = dayStart.getTime();
+    const end = dayEnd.getTime();
+
+    return { start, end };
+  };
   mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
     if (err) {
       callback({ err: err });
@@ -377,13 +388,14 @@ function getEntitiesByDatesRange(
     }
 
     let findString = [];
-    let newField;
-    datesRange.find((date) => {
-      newField = {};
-      newField["date"] = new RegExp(date);
-      findString[findString.length] = newField;
-    });
+    const { start, end } = getDateRange(datesRange.minDate, datesRange.maxDate);
+    findString.push( {"dateTime": { $gte: start, $lte: end }} );
 
+    if (!platform || !platform.length) {
+      platform = [{}];
+    }
+
+    console.log(findString);
     db.collection(collectionName)
       .find({ deleted: { $exists: false }, $and: [{ $or: findString }, { $or: platform }] })
       .sort({ _id: 1 })
