@@ -181,9 +181,12 @@ function getEntitiesByPlatformsAndAmountAndFilter(
         { instructorName: { $regex: search, $options: "i" } },
         { issueOpener: { $regex: search, $options: "i" } },
         { issueDescription: { $regex: search, $options: "i" } },
+
         { firstName: { $regex: search, $options: "i" } },
         { lastName: { $regex: search, $options: "i" } },
         { name: { $regex: search, $options: "i" } },
+        { permissionDescription: { $regex: search, $options: "i" } },
+        { permissionName: { $regex: search, $options: "i" } },
       ];
     }
   }
@@ -213,6 +216,11 @@ function getEntitiesByPlatformsAndAmountAndFilter(
         (doc.instructorName || "").match(new RegExp(search, "i")) ||
         (doc.issueOpener || "").match(new RegExp(search, "i")) ||
         (doc.issueDescription || "").match(new RegExp(search, "i")) ||
+        (doc.firstName || "").match(new RegExp(search, "i")) ||
+        (doc.lastName || "").match(new RegExp(search, "i")) ||
+        (doc.name || "").match(new RegExp(search, "i")) ||
+        (doc.permissionDescription || "").match(new RegExp(search, "i")) ||
+        (doc.permissionName || "").match(new RegExp(search, "i")) ||
         String(doc._id || "").includes(search)
       );
     });
