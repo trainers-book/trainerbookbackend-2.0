@@ -13,6 +13,7 @@ function getManageTabsByRole(role, callback) {
 
     db.collection(ManageCollectionName)
       .find(query)
+      .sort({_id: 1})
       .toArray(function (err, docs) {
         if (err) {
           callback({ err: err.message });
