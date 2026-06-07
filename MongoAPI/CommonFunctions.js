@@ -181,6 +181,9 @@ function getEntitiesByPlatformsAndAmountAndFilter(
         { instructorName: { $regex: search, $options: "i" } },
         { issueOpener: { $regex: search, $options: "i" } },
         { issueDescription: { $regex: search, $options: "i" } },
+        { firstName: { $regex: search, $options: "i" } },
+        { lastName: { $regex: search, $options: "i" } },
+        { name: { $regex: search, $options: "i" } },
       ];
     }
   }
