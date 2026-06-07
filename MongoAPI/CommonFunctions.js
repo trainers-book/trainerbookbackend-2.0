@@ -566,6 +566,91 @@ function createNewObject(objectData, collectionName, callback) {
       return;
     }
     try {
+      if (collectionName === "PreservedFlightNames") {
+        const flightName = String(objectData.name || objectData.flightName || "").trim();
+        const platform = String(objectData.platform || "").trim();
+
+        db.collection(collectionName)
+          .find({
+            deleted: { $exists: false },
+            platform: platform,
+            $or: [{ name: flightName }, { flightName: flightName }],
+          })
+          .toArray(function (err, existingFlights) {
+            if (err) {
+              callback({ err: err });
+              db.close();
+              return;
+            }
+
+            if (existingFlights.length !== 0) {
+              callback({ err: "Object already exist", data: existingFlights });
+              db.close();
+              return;
+            }
+
+            db.collection(collectionName)
+              .find({}, { _id: 1 })
+              .toArray(function (err, flights) {
+                if (err) {
+                  callback({ err: err });
+                  db.close();
+                  return;
+                }
+
+                const maxId = flights.reduce((currentMax, flight) => {
+                  const flightId = Number(flight._id);
+                  return Number.isNaN(flightId)
+                    ? currentMax
+                    : Math.max(currentMax, flightId);
+                }, 0);
+                const requestedId = Number(objectData._id);
+
+                objectData._id = Number.isNaN(requestedId)
+                  ? maxId + 1
+                  : requestedId;
+                objectData.name = flightName;
+                objectData.platform = platform;
+
+                checkIfObjectExist(
+                  objectData._id,
+                  collectionName,
+                  db,
+                  (isExistResult) => {
+                    if (!isExistResult.success) {
+                      callback({ err: isExistResult.err });
+                      db.close();
+                      return;
+                    }
+
+                    if (isExistResult.success && isExistResult.result) {
+                      objectData._id = maxId + 1;
+                    }
+
+                    db.collection(collectionName).insertOne(
+                      objectData,
+                      function (err, result) {
+                        if (err) {
+                          db.close();
+                          callback({ err: err });
+                          return;
+                        }
+                        db.close();
+                        if (result.result.ok === 1 && result.insertedCount === 1)
+                          callback({
+                            success: true,
+                            object: objectData,
+                          });
+                        else callback({ err: "Error While Creating Object in System" });
+                      }
+                    );
+                  }
+                );
+              });
+          });
+        return;
+      }
+
       checkIfObjectExist(
         objectData._id,
         collectionName,
