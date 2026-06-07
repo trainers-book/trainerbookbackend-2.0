@@ -167,6 +167,13 @@ function getEntitiesByPlatformsAndAmountAndFilter(
     }
 
     if (
+      filters.status != undefined &&
+      collectionName == "Permissions"
+    ) {
+      query.status = { $in: filters.status };
+    }
+
+    if (
       filters.issueSeverity != undefined &&
       collectionName == "FlightFailure"
     ) {
@@ -665,15 +672,13 @@ function updateObjectsFields(objectIds, collectionName, updatedData, callback) {
     try {
       let updateValues = { $addToSet: updatedData };
       const updateObjects = objectIds.map((objectId) =>
-        db
-          .collection(collectionName)
-          .updateOne({ _id: objectId }, updateValues, (err, doc) => {
+        db.collection(collectionName).updateOne({ _id: objectId }, updateValues, (err, doc) => {
             if (err) {
               callback({ success: false, err: err });
               db.close();
             }
             return doc.matchedCount === 1;
-          }),
+          })
       );
       callback({ success: updateObjects });
     } catch (err) {
@@ -732,9 +737,49 @@ function updateObject(objectData, collectionName, fieldsToRemove, callback) {
         setValues["$unset"] = fieldsToRemove;
       }
 
-      let id = objectData._id;
+      let id;
+
+      if (objectData.lastId && objectData.lastId != objectData._id){
+        id = objectData.lastId;
+        setValues = { $set: { deleted: true } };
+
+        const objectToInsert = {
+          ...objectData
+        }
+
+        objectToInsert._id = Number(objectToInsert._id);
+        delete objectToInsert.lastId;
+        db.collection(collectionName).insertOne(
+          objectToInsert,
+          (err, doc) => {
+            if (err) {
+              db.close();
+              return;
+            }
+          }
+        );
+
+      } else {
+        id = objectData._id;
+        delete objectData.lastId;
+      }
+
       if (objectData["deleted"]) {
-        delete objectData._id;
+        delete objectData._id;        
+
+        if (collectionName === "Aircraft") {          
+          getEntitiesByAttribute(collectionName, "_id", id, (aircrafts) => {            
+            if (aircrafts.length > 0 && aircrafts[0].name) {              
+              removePlatformValueFromAllCollections(aircrafts[0].name, (result) => {
+                if (result.err) {
+                  callback({ err: result.err });
+                  db.close();
+                  return;
+                }
+              })
+            }
+          });
+        }
       }
 
       db.collection(collectionName).updateOne(
@@ -839,6 +884,69 @@ function countFilesByFileName(collectionName, fileVarName, fileName, callback) {
   });
 }
 
+function removePlatformValueFromAllCollections(valueToRemove, callback) {
+  mongoObject.mongoClient.connect(mongoObject.MongoDBUrl, function (err, db) {
+    if (err) {
+      callback({ err: err });
+      if (db) db.close();
+      return;
+    }
+
+    db.collections(function (err, collections) {
+      if (err) {
+        callback({ err: err });
+        db.close();
+        return;
+      }
+
+      const targetCollections = collections.filter(function (col) {
+        const name = col.collectionName || (col.s && col.s.name) || col.name;
+        return name && !name.startsWith("system.");
+      });
+
+      if (targetCollections.length === 0) {
+        db.close();
+        callback({ success: true, message: "No collections to process." });
+        return;
+      }
+
+      let completed = 0;
+      let hasError = false;
+      let errors = [];
+
+      targetCollections.forEach(function (collection) {
+        const collectionName = collection.collectionName || (collection.s && collection.s.name) || collection.name;
+        const query = {
+          $and: [
+            { "platform.0": { $exists: true } },
+            { platform: valueToRemove }
+          ]
+        };
+        const update = {
+          $pull: { platform: valueToRemove }
+        };
+
+        collection.updateMany(query, update, function (updateErr, result) {
+          if (updateErr) {
+            hasError = true;
+            errors.push({ collection: collectionName, err: updateErr.message || updateErr });
+          }
+          completed++;
+          if (completed === targetCollections.length) {
+            db.close();
+            if (hasError) {
+              callback({ success: false, errors: errors });
+            } else {
+              callback({ success: true });
+            }
+          }
+        });
+      });
+    });
+  });
+}
+
+module.exports.removePlatformValueFromAllCollections = removePlatformValueFromAllCollections;
 module.exports.entitiesToGet = entitiesToGet;
 module.exports.deleteEntity = deleteEntity;
 module.exports.getAllEntity = getAllEntity;
