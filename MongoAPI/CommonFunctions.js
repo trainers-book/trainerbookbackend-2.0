@@ -725,6 +725,28 @@ function createNewObject(objectData, collectionName, callback) {
           }
 
           if (isExistResult.success && isExistResult.result) {
+            if (isExistResult.data[0] && isExistResult.data[0].deleted) {
+              db.collection(collectionName).updateOne(
+                { _id: objectData._id },
+                { $set: objectData, $unset: { deleted: "" } },
+                function (err, result) {
+                  if (err) {
+                    db.close();
+                    callback({ err: err });
+                    return;
+                  }
+                  db.close();
+                  if (result.result.ok === 1 && result.matchedCount === 1)
+                    callback({
+                      success: true,
+                      object: objectData,
+                    });
+                  else callback({ err: "Error While Restoring Object in System" });
+                },
+              );
+              return;
+            }
+
             callback({ err: "Object already exist", data: isExistResult.data });
             db.close();
             return;
